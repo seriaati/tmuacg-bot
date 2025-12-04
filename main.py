@@ -45,7 +45,7 @@ class TMUACGBot(commands.Bot):
 bot = TMUACGBot()
 
 
-@bot.tree.command(name="抽豪", description="抽豪豪")
+@bot.tree.command(name="豪有感覺", description="抽豪豪")
 @app_commands.allowed_installs(guilds=True, users=True)
 @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
 async def draw_hao(i: discord.Interaction) -> None:

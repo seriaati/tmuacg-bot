@@ -16,7 +16,14 @@ RATES = {BLUE_HAOHAO: 0.99, GOLDEN_HAOHAO: 0.01, RAINBOW_HAOHAO: 0.001}
 class TMUACGBot(commands.Bot):
     def __init__(self) -> None:
         super().__init__(
-            intents=discord.Intents.default(), command_prefix=commands.when_mentioned
+            intents=discord.Intents.default(),
+            command_prefix=commands.when_mentioned,
+            allowed_contexts=discord.app_commands.AppCommandContext(
+                guild=True, dm_channel=True, private_channel=True
+            ),
+            allowed_installs=discord.app_commands.AppInstallationType(
+                guild=True, user=True
+            ),
         )
 
     async def setup_hook(self) -> None:

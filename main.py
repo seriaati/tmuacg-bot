@@ -90,6 +90,8 @@ async def draw_hao(i: discord.Interaction) -> None:
     await bot.db.commit()
 
     formatted_pulls = "\n".join(["".join(pulls[i : i + 5]) for i in range(0, 10, 5)])
+    pity_status = f"\n金豪豪保底：{pity_count}/100\n"
+    formatted_pulls = pity_status + formatted_pulls
     await i.response.send_message(formatted_pulls)
 
 

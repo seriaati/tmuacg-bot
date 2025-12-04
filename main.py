@@ -1,9 +1,9 @@
-import asyncio
 import os
 import discord
 from dotenv import load_dotenv
 from discord.ext import commands
 import random
+from discord import app_commands
 
 
 BLUE_HAOHAO = "<:HaoHaoBlue:1445996656284794891>"
@@ -18,12 +18,6 @@ class TMUACGBot(commands.Bot):
         super().__init__(
             intents=discord.Intents.default(),
             command_prefix=commands.when_mentioned,
-            allowed_contexts=discord.app_commands.AppCommandContext(
-                guild=True, dm_channel=True, private_channel=True
-            ),
-            allowed_installs=discord.app_commands.AppInstallationType(
-                guild=True, user=True
-            ),
         )
 
     async def setup_hook(self) -> None:
@@ -34,6 +28,8 @@ bot = TMUACGBot()
 
 
 @bot.tree.command(name="抽豪", description="抽豪豪")
+@app_commands.allowed_installs(guilds=True, users=True)
+@app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
 async def draw_hao(i: discord.Interaction) -> None:
     pulls = []
     for _ in range(10):
